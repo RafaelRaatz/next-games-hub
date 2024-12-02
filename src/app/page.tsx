@@ -1,4 +1,5 @@
 import { Container } from "@/components/container";
+import { Input } from "@/components/input";
 import { GameProps } from "@/utils/types/games";
 import Image from "next/image";
 import Link from "next/link";
@@ -7,7 +8,8 @@ import { BsArrowRightSquare } from "react-icons/bs";
 async function getRandomGame() {
   try {
     const res = await fetch(
-      `${process.env.NEXT_API_URL}/next-api/?api=game_day`
+      `${process.env.NEXT_API_URL}/next-api/?api=game_day`,
+      { next: { revalidate: 320 } }
     );
 
     return res.json();
@@ -24,7 +26,7 @@ export default async function Home() {
       <Container>
         <Link href={`/game/${randomGame.id}`}>
           <div className="w-full bg-black rounded-lg mt-8">
-            <div className="w-full max-h-96 h-96 relative rounded-lg ">
+            <div className="w-full max-h-[550px] h-[550px] relative rounded-lg ">
               <div className="absolute z-20 justify-center items-center right-0 bottom-0 p-6">
                 <h1 className="text-center font-bold text-4xl text-white mb-4">
                   We have an exclusive <br /> game for you!
@@ -43,12 +45,13 @@ export default async function Home() {
                 priority={true}
                 quality={100}
                 fill={true}
-                className="max-h-96 object-cover rounded-lg opacity-30 hover:opacity-60 transiton-all duration-300"
+                className="max-h-[550px] object-cover rounded-lg opacity-30 hover:opacity-60 transiton-all duration-300"
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 44vw"
               />
             </div>
           </div>
         </Link>
+        <Input />
       </Container>
     </main>
   );
