@@ -19,12 +19,12 @@ export function Input() {
   return (
     <form
       onSubmit={handleSearch}
-      className="w-full bg-slate-200 my-5 flex gap-2 items-center justify-between rounded-lg p-2"
+      className="w-full bg-slate-300 my-5 flex gap-2 items-center justify-between rounded-lg p-2"
     >
       <input
-      className="bg-slate-200 outline-none w-11/12"
+      className="bg-slate-300 outline-none w-11/12"
         type="text"
-        placeholder="procurando algo?"
+        placeholder="looking for a game?"
         value={input}
         onChange={(e) => setInput(e.target.value)}
       />

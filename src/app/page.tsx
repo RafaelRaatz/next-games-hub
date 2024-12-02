@@ -1,3 +1,4 @@
+import { Card } from "@/components/card";
 import { Container } from "@/components/container";
 import { Input } from "@/components/input";
 import { GameProps } from "@/utils/types/games";
@@ -18,8 +19,21 @@ async function getRandomGame() {
   }
 }
 
+async function getListGames() {
+  try {
+    const res = await fetch(`${process.env.NEXT_API_URL}/next-api/?api=games`, {
+      next: { revalidate: 320 },
+    });
+
+    return res.json();
+  } catch (err) {
+    throw new Error("failed to fetch data");
+  }
+}
+
 export default async function Home() {
   const randomGame: GameProps = await getRandomGame();
+  const listGame: GameProps[] = await getListGames();
 
   return (
     <main className="w-full ">
@@ -52,6 +66,14 @@ export default async function Home() {
           </div>
         </Link>
         <Input />
+
+        <h2 className="text-lg font-bold mt-8 mb-5">New Games</h2>
+
+        <div className="grid gap-7 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+          {listGame.map((item) => (
+            <Card key={item.id} data={item} />
+          ))}
+        </div>
       </Container>
     </main>
   );
