@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { LiaGamepadSolid } from "react-icons/lia";
+import { FaCircleUser } from "react-icons/fa6";
+
 
 export function Header() {
   return (
@@ -19,7 +20,7 @@ export function Header() {
 
         <div className="hidden sm:flex justify-center items-center">
           <Link href="/profile">
-            <LiaGamepadSolid size={34} color="#475569" />
+            <FaCircleUser size={34} color="#475569" />
           </Link>
         </div>
       </div>
