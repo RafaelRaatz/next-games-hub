@@ -37,36 +37,42 @@ export default async function Home() {
 
   return (
     <main className="w-full ">
-      <Container>
-        <Link href={`/game/${randomGame.id}`}>
-          <div className="w-full bg-black rounded-lg mt-8">
-            <div className="w-full max-h-[550px] h-[550px] relative rounded-lg ">
-              <div className="absolute z-20 justify-center items-center right-0 bottom-0 p-6">
-                <h1 className="text-center font-bold text-4xl text-white mb-4">
-                  We have an exclusive <br /> game for you!
-                </h1>
-                <div className="flex gap-2 items-center justify-center">
-                  <p className="font-bold text-xl text-white">
-                    {randomGame.title}
-                  </p>
-                  <BsArrowRightSquare size={24} color="#fff" />
-                </div>
+      <div className="w-full bg-black rounded-lg ">
+        <div className="w-full max-h-[575px] h-96 sm:h-[575px] relative  ">
+          <Link href={`/game/${randomGame.id}`}>
+            <div className="absolute z-30 justify-center items-center right-0 bottom-0 p-6">
+              <h1 className="text-center font-bold text-xl text-white mb-4">
+                We have an exclusive <br /> game for you!
+              </h1>
+              <div className="flex gap-2 items-center justify-center">
+                <p className="font-bold text-sm text-white">
+                  {randomGame.title}
+                </p>
+                <BsArrowRightSquare size={24} color="#fff" />
               </div>
-
-              <Image
-                src={randomGame.image_url}
-                alt={randomGame.title}
-                priority={true}
-                quality={100}
-                fill={true}
-                className="max-h-[550px] object-cover rounded-lg opacity-30 hover:opacity-60 transiton-all duration-300"
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 44vw"
-              />
+            </div>
+          </Link>
+          <div className="absolute flex justify-center items-center z-20 w-full max-h-[575px] h-96 sm:h-[575px]">
+            <div className="flex-col w-96 text-center ">
+              <div className="flex-col justify-center items-center">
+              <h1 className="text-white text-5xl">Search your favorite game|</h1>
+              <Input />
+              </div>
             </div>
           </div>
-        </Link>
-        <Input />
+          <Image
+            src={randomGame.image_url}
+            alt={randomGame.title}
+            priority={true}
+            quality={100}
+            fill={true}
+            className="max-h-[575px] object-cover opacity-30 hover:opacity-60 transiton-all duration-300"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 44vw"
+          />
+        </div>
+      </div>
 
+      <Container>
         <h2 className="text-lg font-bold mt-8 mb-5">New Games</h2>
 
         <div className="grid gap-7 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
