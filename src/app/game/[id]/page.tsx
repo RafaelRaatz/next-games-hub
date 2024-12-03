@@ -6,18 +6,15 @@ import { Label } from "./components/label";
 import { Card } from "@/components/card";
 import { Metadata } from "next";
 
-interface PropsParams {
-  params: {
-    id: string;
-  };
-}
-
 export async function generateMetadata({
   params,
-}: PropsParams): Promise<Metadata> {
+}: {
+  params: Promise<{ id: string }>;
+}): Promise<Metadata> {
+  const { id } = await params;
   try {
     const response: GameProps = await fetch(
-      `${process.env.NEXT_API_URL}/next-api/?api=game&id=${params.id}`,
+      `${process.env.NEXT_API_URL}/next-api/?api=game&id=${id}`,
       { next: { revalidate: 60 } }
     )
       .then((res) => res.json())
@@ -78,10 +75,11 @@ async function getRecommendedGame() {
 }
 
 export default async function Game({
-  params: { id },
+  params,
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }) {
+  const { id } = await params;
   const data: GameProps = await getData(id);
   const recommendedGame: GameProps = await getRecommendedGame();
 
