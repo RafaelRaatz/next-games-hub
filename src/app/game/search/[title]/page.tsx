@@ -5,8 +5,9 @@ import { GameProps } from "@/utils/types/games";
 
 async function getData(title: string) {
   try {
+    const decodetitle = decodeURI(title);
     const res = await fetch(
-      `${process.env.NEXT_API_URL}/next-api/?api=game&title=${title}`
+      `${process.env.NEXT_API_URL}/next-api/?api=game&title=${decodetitle}`
     );
     return res.json();
   } catch (err) {
@@ -25,7 +26,9 @@ export default async function Search({
     <div className="w-full text-black">
       <Container>
         <Input />
-        <h1 className="font-bold text-xl mt-8 mb-5">Games founded</h1>
+        <h1 className="font-bold text-xl mt-8 mb-5">
+          see what we found in our gallery
+        </h1>
 
         {!games && <p>game not found...</p>}
 

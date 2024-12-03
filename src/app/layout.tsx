@@ -17,6 +17,20 @@ const geistMono = localFont({
 export const metadata: Metadata = {
   title: "GameBoard+",
   description: "game center",
+  keywords: ["games", "jogos", "steam"],
+  openGraph: {
+    images: [`${process.env.PROJECT_URL}/preview.png`],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    nocache: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      noimageindex: true,
+    },
+  },
 };
 
 export default function RootLayout({
